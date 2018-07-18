@@ -70,12 +70,14 @@ accuracy = (TP + TN) / (TP + FP + TN + FN)
 F1-score = 2 * precision rate * recall rate / (precision rate + recall rate)
 
 4、问题分析
+
 问题本身属于短文本相似度计算问题，虽然是二分类的目标，但是核心还是计算两个短文本的相似度。而短文本相似度计算主要包括两大类方法：传统机器学习方法，深度学习方法。
 
 由于传统的文本相似性如BM25，无法有效发现语义类 query-Doc 结果对，如"从北京到上海的机票"与"携程网"的相似性、"快递软件"与"菜鸟裹裹"的相似性。在排序时，一些细微的语言变化往往带来巨大的语义变化，如"小宝宝生病怎么办"和"狗宝宝生病怎么办"、"深度学习"和"学习深度"。
 因此定位方法为使用深度学习构建学习网络来计算语义相似度。
 
-(1)预处理：pre.py
+(1)pre.py：预处理函数
+
 考虑在构建模型之前，做分词，词性标注，实体识别，句法分析，语义分析等基础工作；并对数据集进行初步分析和估计；
 
 第一步：通过构建字典，统计词频大小和相似度计算，以及抽取相同词；
@@ -86,17 +88,19 @@ F1-score = 2 * precision rate * recall rate / (precision rate + recall rate)
 词向量：固定长度24，利用统计词频方法将短文本分词后构建为词向量表示；
 相似度计算：利用窗口截取分词，然后计算 similarity=相同词频/总词频；
 
-(2)DSSM网络结构：dssm.py JoinAttLayer.py 
+(2)dssm.py JoinAttLayer.py：DSSM网络训练
+
 相似度计算方面，考虑首先对短文本构建词向量模型，构建使用基本的DSSM深度学习网络得到baseline，10fold提升性能，最后模型融合达到TOP3%成绩进入复赛；
 
 具体网络结构如下：模型是双向lstm+attention+dropout+dense，字向量和词向量并行融合，特征扩充；
 
-(3)使用训练好的模型进行分类预测：process.py
+(3)process.py：使用训练好的模型分类预测
 
-(4)工具函数：util.py
+(4)util.py：工具函数
 
 5、算法设计
 现有的NLP中深度学习的应用相对较少，常用的有LSTM,RNN,CNN等，而针对语义相似度的模型主流的如DSSM系列：DSSM、CNN-DSSM、LSTM-DSSM
-[DSSM]https://blog.csdn.net/jaygle/article/details/80927732
+
+https://blog.csdn.net/jaygle/article/details/80927732
 
 
