@@ -122,11 +122,11 @@ F1-score = 2 * precision rate * recall rate / (precision rate + recall rate)
 
 DSSM，对于输入数据是Query对，即Query短句和相应的查询短句，查询短句中分相似和不相似，分别为正负样。Word embedding，英文常使用3-grams，对于中文，自己使用了uni-gram，因为中文本身字有一定代表意义（也有论文拆笔画），对于每个gram都使用词频编码代替，最终可以大大降低短句维度[2]。DSSM模型中会加入word hashing层来用letter-trigram向量表示word。
 
-[DSSM原理图]
+![]()
 
 具体网络结构如下：双向lstm+attention+dropout+dense，字向量和词向量并行融合，10fold提升性能，最后模型融合达到TOP3%成绩进入复赛；
 
-[搭建DSSM图]
+![]()
 
 其他函数：模型分类预测函数(process.py),工具函数(util.py)
 
@@ -149,6 +149,7 @@ python 2.7 + tensorflow 1.8 + keras
 
 
 [1] https://blog.csdn.net/jaygle/article/details/80927732
+
 [2] https://blog.csdn.net/shine19930820/article/details/79042567
 
 
