@@ -126,7 +126,7 @@ DSSM，对于输入数据是Query对，即Query短句和相应的查询短句，
 
 具体网络结构如下：双向lstm+attention+dropout+dense，字向量和词向量并行融合，10fold提升性能，最后模型融合达到TOP3%成绩进入复赛；
 
-![](https://github.com/jaygle17/ATEC-NLP/blob/master/dssm_network.png)
+![](https://github.com/jaygle17/ATEC-NLP/blob/master/dssm_network.jpg)
 
 其他函数：模型分类预测函数(process.py),工具函数(util.py)
 
